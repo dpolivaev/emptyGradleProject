@@ -2,3 +2,7 @@
 /.idea/
 /target/
 /.gradle/
+/.settings/
+/src/
+/.classpath
+/.project
