@@ -63,7 +63,6 @@ public class TennisSpec {
 	}
 
 
-	@Ignore
 	@Test
 	public void firstPlayerWinsFourPoints_scoreIsFirstPlayerWinsGame() throws Exception {
 		Score fifteenToLove = new InitialPhaseScore(Scores.FORTY, Scores.LOVE);

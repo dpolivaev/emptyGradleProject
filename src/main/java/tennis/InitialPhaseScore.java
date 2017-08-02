@@ -27,8 +27,12 @@ class InitialPhaseScore implements Score {
 	}
 
 	public Score firstPlayerWinsPoint() {
-		Scores nextScore = Scores.values()[firstPlayerScore.ordinal() + 1];
-		return new InitialPhaseScore(nextScore, secondPlayerScore);
+		if(firstPlayerScore.ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[firstPlayerScore.ordinal() + 1];
+			return new InitialPhaseScore(nextScore, secondPlayerScore);
+		}
+		else
+			return new FirstPlayerWinsScore();
 	}
 
 	public Score secondPlayerWinsPoint() {
