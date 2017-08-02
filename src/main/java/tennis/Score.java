@@ -2,26 +2,27 @@ package tennis;
 
 
 public class Score {
-	private String currentScore = "LOVE:LOVE";
+	
+	enum Scores{LOVE, FIFTEEN};
+	
+	private Scores firstPlayerScore = Scores.LOVE;
+	private Scores secondPlayerScore = Scores.LOVE;
 
 	public static Score initialScore() {
 		return new Score();
 	}
 
 	public String format() {
-		return currentScore;
+		return firstPlayerScore.name() + ':' + secondPlayerScore.name();
 	}
 
 	public Score firstPlayerWinsPoint() {
-		currentScore = "FIFTEEN:LOVE";
+		firstPlayerScore = Scores.FIFTEEN;
 		return this;
 	}
 
 	public Score secondPlayerWinsPoint() {
-		if(currentScore.equals("FIFTEEN:LOVE"))
-			currentScore = "FIFTEEN:FIFTEEN";
-		else
-			currentScore = "LOVE:FIFTEEN";
+		secondPlayerScore = Scores.FIFTEEN;
 		return this;
 	}
 
