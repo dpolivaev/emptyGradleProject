@@ -5,25 +5,31 @@ public class Score {
 	
 	enum Scores{LOVE, FIFTEEN};
 	
-	private Scores firstPlayerScore = Scores.LOVE;
-	private Scores secondPlayerScore = Scores.LOVE;
+	private final Scores firstPlayerScore;
+	private final Scores secondPlayerScore;
 
 	public static Score initialScore() {
-		return new Score();
+		return new Score(Scores.LOVE, Scores.LOVE);
 	}
+	
+
+	private Score(Scores firstPlayerScore, Scores secondPlayerScore) {
+		super();
+		this.firstPlayerScore = firstPlayerScore;
+		this.secondPlayerScore = secondPlayerScore;
+	}
+
 
 	public String format() {
 		return firstPlayerScore.name() + ':' + secondPlayerScore.name();
 	}
 
 	public Score firstPlayerWinsPoint() {
-		firstPlayerScore = Scores.FIFTEEN;
-		return this;
+		return new Score(Scores.FIFTEEN, secondPlayerScore);
 	}
 
 	public Score secondPlayerWinsPoint() {
-		secondPlayerScore = Scores.FIFTEEN;
-		return this;
+		return new Score(firstPlayerScore, Scores.FIFTEEN);
 	}
 
 }
