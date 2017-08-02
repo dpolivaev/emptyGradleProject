@@ -9,7 +9,7 @@ public class DeuceScore implements Score {
 
 	@Override
 	public Score secondPlayerWinsPoint() {
-		return null;
+		return new PlayerHasAdvantageScore(Players.SECOND);
 	}
 
 	@Override
