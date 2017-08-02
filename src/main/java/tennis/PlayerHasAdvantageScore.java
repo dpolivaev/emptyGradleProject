@@ -16,7 +16,7 @@ class PlayerHasAdvantageScore implements Score {
 
 	@Override
 	public Score secondPlayerWinsPoint() {
-		return null;
+		return new PlayerWinsScore(playerName);
 	}
 
 	@Override
