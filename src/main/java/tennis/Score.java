@@ -18,7 +18,10 @@ public class Score {
 	}
 
 	public Score secondPlayerWinsPoint() {
-		currentScore = "LOVE:FIFTEEN";
+		if(currentScore.equals("FIFTEEN:LOVE"))
+			currentScore = "FIFTEEN:FIFTEEN";
+		else
+			currentScore = "LOVE:FIFTEEN";
 		return this;
 	}
 
