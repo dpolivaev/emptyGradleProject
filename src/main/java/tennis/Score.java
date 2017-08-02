@@ -32,7 +32,8 @@ public class Score {
 	}
 
 	public Score secondPlayerWinsPoint() {
-		return new Score(firstPlayerScore, Scores.FIFTEEN);
+		Scores nextScore = Scores.values()[secondPlayerScore.ordinal() + 1];
+		return new Score(firstPlayerScore, nextScore);
 	}
 
 }
