@@ -3,7 +3,6 @@ package tennis;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import tennis.InitialPhaseScore.Scores;
@@ -16,7 +15,7 @@ public class TennisSpec {
 	}
 
 	@Test
-	public void firstPlayerWinsOnePoint_scoreIsFifteenLove() throws Exception {
+	public void firstPlayerWinsOnePoint_fifteenLove() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
 		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
 		assertThat(fifteenToLove.format()).isEqualTo("FIFTEEN:LOVE");
@@ -24,14 +23,14 @@ public class TennisSpec {
 
 
 	@Test
-	public void secondPlayerWinsTwoPoints_scoreIsLoveFifteen() throws Exception {
+	public void secondPlayerWinsTwoPoints_loveFifteen() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
 		Score fifteenToLove = initialScore.secondPlayerWinsPoint();
 		assertThat(fifteenToLove.format()).isEqualTo("LOVE:FIFTEEN");
 	}
 
 	@Test
-	public void eachPlayerWinsOnePoint_scoreIsFifteenFifteen() throws Exception {
+	public void eachPlayerWinsOnePoint_fifteenFifteen() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
 		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
 		Score fifteenToFifteen = fifteenToLove.secondPlayerWinsPoint();
@@ -40,7 +39,7 @@ public class TennisSpec {
 
 
 	@Test
-	public void firstPlayerWinsTwoPoints_scoreIsThirtyLove() throws Exception {
+	public void firstPlayerWinsTwoPoints_thirtyLove() throws Exception {
 		Score beforeLastPoint = new InitialPhaseScore(Scores.FIFTEEN, Scores.LOVE);
 		Score result = beforeLastPoint.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("THIRTY:LOVE");
@@ -48,7 +47,7 @@ public class TennisSpec {
 
 
 	@Test
-	public void secondPlayerWinsTwoPoints_scoreIsLoveThirty() throws Exception {
+	public void secondPlayerWinsTwoPoints_loveThirty() throws Exception {
 		Score beforeLastPoint = new InitialPhaseScore(Scores.LOVE, Scores.FIFTEEN);
 		Score result = beforeLastPoint.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("LOVE:THIRTY");
@@ -56,7 +55,7 @@ public class TennisSpec {
 
 
 	@Test
-	public void firstPlayerWinsThreePoints_scoreIsFortyLove() throws Exception {
+	public void firstPlayerWinsThreePoints_fortyLove() throws Exception {
 		Score beforeLastPoint = new InitialPhaseScore(Scores.THIRTY, Scores.LOVE);
 		Score result = beforeLastPoint.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("FORTY:LOVE");
@@ -64,16 +63,30 @@ public class TennisSpec {
 
 
 	@Test
-	public void firstPlayerWinsFourPoints_scoreIsFirstPlayerWinsGame() throws Exception {
+	public void firstPlayerWinsFourPoints_firstPlayerWinsGame() throws Exception {
 		Score beforeLastPoint = new InitialPhaseScore(Scores.FORTY, Scores.LOVE);
 		Score result = beforeLastPoint.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("First player wins game");
 	}
 
 	@Test
-	public void secondPlayerWinsFourPoints_scoreIsSecondPlayerWinsGame() throws Exception {
+	public void secondPlayerWinsFourPoints_secondPlayerWinsGame() throws Exception {
 		Score beforeLastPoint = new InitialPhaseScore(Scores.LOVE, Scores.FORTY);
 		Score result = beforeLastPoint.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("Second player wins game");
+	}
+
+	@Test
+	public void firstPlayerWinsFourPointsAndSecondPlayerWinsThreePoints_firstPlayerHasAdvantage() throws Exception {
+		Score beforeLastPoint = new InitialPhaseScore(Scores.FORTY, Scores.FORTY);
+		Score result = beforeLastPoint.firstPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("First player has advantage");
+	}
+
+	@Test
+	public void firstPlayerWinsThreePointsAndSecondPlayerWinsFourPoints_secondPlayerHasAdvantage() throws Exception {
+		Score beforeLastPoint = new InitialPhaseScore(Scores.FORTY, Scores.FORTY);
+		Score result = beforeLastPoint.secondPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("Second player has advantage");
 	}
 }
