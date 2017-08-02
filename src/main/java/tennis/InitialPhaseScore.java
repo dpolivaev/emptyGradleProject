@@ -32,7 +32,7 @@ class InitialPhaseScore implements Score {
 			return new InitialPhaseScore(nextScore, secondPlayerScore);
 		}
 		else
-			return new FirstPlayerWinsScore();
+			return new PlayerWinsScore("First");
 	}
 
 	public Score secondPlayerWinsPoint() {
@@ -41,7 +41,7 @@ class InitialPhaseScore implements Score {
 			return new InitialPhaseScore(firstPlayerScore, nextScore);
 		}
 		else
-			return new SecondPlayerWinsScore();
+			return new PlayerWinsScore("Second");
 	}
 
 }
