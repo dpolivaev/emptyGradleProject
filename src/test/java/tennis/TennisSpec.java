@@ -69,4 +69,11 @@ public class TennisSpec {
 		Score result = beforeLastPoint.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("First player wins game");
 	}
+
+	@Test
+	public void secondPlayerWinsFourPoints_scoreIsSecondPlayerWinsGame() throws Exception {
+		Score beforeLastPoint = new InitialPhaseScore(Scores.LOVE, Scores.FORTY);
+		Score result = beforeLastPoint.secondPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("Second player wins game");
+	}
 }
