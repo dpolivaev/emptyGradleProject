@@ -11,7 +11,9 @@ class PlayerHasAdvantageScore implements Score {
 
 	@Override
 	public Score firstPlayerWinsPoint() {
-		return new PlayerWinsScore(playerName);
+		if(playerName.equals("First"))
+			return new PlayerWinsScore(playerName);
+		return new DeuceScore();
 	}
 
 	@Override
