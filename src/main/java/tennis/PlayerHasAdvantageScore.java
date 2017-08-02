@@ -1,31 +1,31 @@
 package tennis;
 
 class PlayerHasAdvantageScore implements Score {
-	private final String playerName;
+	private final Players player;
 
-	public PlayerHasAdvantageScore(String playerName) {
+	public PlayerHasAdvantageScore(Players player) {
 		super();
-		this.playerName = playerName;
+		this.player = player;
 	}
 
 
 	@Override
 	public Score firstPlayerWinsPoint() {
-		if(playerName.equals("First"))
-			return new PlayerWinsScore(playerName);
+		if(player == Players.FIRST)
+			return new PlayerWinsScore(player);
 		return new DeuceScore();
 	}
 
 	@Override
 	public Score secondPlayerWinsPoint() {
-		if(playerName.equals("Second"))
-			return new PlayerWinsScore(playerName);
+		if(player == Players.SECOND)
+			return new PlayerWinsScore(player);
 		return new DeuceScore();
 	}
 
 	@Override
 	public String format() {
-		return playerName + " player has advantage";
+		return player.getPlayerName() + " player has advantage";
 	}
 
 }

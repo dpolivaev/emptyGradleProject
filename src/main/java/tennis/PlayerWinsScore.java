@@ -1,11 +1,11 @@
 package tennis;
 
 class PlayerWinsScore implements Score {
-	private final String playerName;
+	private final Players player;
 
-	public PlayerWinsScore(String playerName) {
+	public PlayerWinsScore( Players player) {
 		super();
-		this.playerName = playerName;
+		this.player = player;
 	}
 
 	@Override
@@ -20,7 +20,7 @@ class PlayerWinsScore implements Score {
 
 	@Override
 	public String format() {
-		return playerName + " player wins game";
+		return player.getPlayerName() + " player wins game";
 	}
 
 }

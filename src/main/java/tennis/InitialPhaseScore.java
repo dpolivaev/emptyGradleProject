@@ -32,10 +32,10 @@ class InitialPhaseScore implements Score {
 			return new InitialPhaseScore(nextScore, secondPlayerScore);
 		}
 		else if(secondPlayerScore.ordinal() + 1 < Scores.values().length) {
-			return new PlayerWinsScore("First");
+			return new PlayerWinsScore(Players.FIRST);
 		}
 		else
-			return new PlayerHasAdvantageScore("First");
+			return new PlayerHasAdvantageScore(Players.FIRST);
 	}
 
 	public Score secondPlayerWinsPoint() {
@@ -44,10 +44,10 @@ class InitialPhaseScore implements Score {
 			return new InitialPhaseScore(firstPlayerScore, nextScore);
 		}
 		else if(firstPlayerScore.ordinal() + 1 < Scores.values().length) {
-			return new PlayerWinsScore("Second");
+			return new PlayerWinsScore(Players.SECOND);
 		}
 		else
-			return new PlayerHasAdvantageScore("Second");
+			return new PlayerHasAdvantageScore(Players.SECOND);
 	}
 
 }
