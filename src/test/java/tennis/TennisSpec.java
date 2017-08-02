@@ -17,24 +17,24 @@ public class TennisSpec {
 	@Test
 	public void firstPlayerWinsOnePoint_fifteenLove() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
-		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
-		assertThat(fifteenToLove.format()).isEqualTo("FIFTEEN:LOVE");
+		Score result = initialScore.firstPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("FIFTEEN:LOVE");
 	}
 
 
 	@Test
 	public void secondPlayerWinsTwoPoints_loveFifteen() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
-		Score fifteenToLove = initialScore.secondPlayerWinsPoint();
-		assertThat(fifteenToLove.format()).isEqualTo("LOVE:FIFTEEN");
+		Score result = initialScore.secondPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("LOVE:FIFTEEN");
 	}
 
 	@Test
 	public void eachPlayerWinsOnePoint_fifteenFifteen() throws Exception {
 		Score initialScore = InitialPhaseScore.initialScore();
 		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
-		Score fifteenToFifteen = fifteenToLove.secondPlayerWinsPoint();
-		assertThat(fifteenToFifteen.format()).isEqualTo("FIFTEEN:FIFTEEN");
+		Score result = fifteenToLove.secondPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("FIFTEEN:FIFTEEN");
 	}
 
 
