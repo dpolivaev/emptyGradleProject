@@ -3,7 +3,7 @@ package tennis;
 class PlayerHasAdvantageScore implements Score {
 	private final Players player;
 
-	public PlayerHasAdvantageScore(Players player) {
+	PlayerHasAdvantageScore(Players player) {
 		super();
 		this.player = player;
 	}

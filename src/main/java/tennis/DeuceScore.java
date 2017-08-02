@@ -1,6 +1,7 @@
 package tennis;
 
-public class DeuceScore implements Score {
+class DeuceScore implements Score {
+	DeuceScore() {}
 
 	@Override
 	public Score firstPlayerWinsPoint() {

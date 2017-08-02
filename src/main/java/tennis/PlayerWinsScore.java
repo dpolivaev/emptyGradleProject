@@ -3,7 +3,7 @@ package tennis;
 class PlayerWinsScore implements Score {
 	private final Players player;
 
-	public PlayerWinsScore( Players player) {
+	PlayerWinsScore( Players player) {
 		super();
 		this.player = player;
 	}
