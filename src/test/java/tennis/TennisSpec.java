@@ -91,16 +91,23 @@ public class TennisSpec {
 	}
 
 	@Test
-	public void firstPlayerWinsPointAfterAdvantage_firstPlayerWinsGame() throws Exception {
+	public void firstPlayerWinsPointAfterHisAdvantage_firstPlayerWinsGame() throws Exception {
 		Score beforeLastPoint = new PlayerHasAdvantageScore("First");
 		Score result = beforeLastPoint.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("First player wins game");
 	}
 
 	@Test
-	public void secondPlayerWinsPointAfterAdvantage_secondPlayerWinsGame() throws Exception {
+	public void secondPlayerWinsPointAfterHisAdvantage_secondPlayerWinsGame() throws Exception {
 		Score beforeLastPoint = new PlayerHasAdvantageScore("Second");
 		Score result = beforeLastPoint.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("Second player wins game");
+	}
+
+	@Test
+	public void secondPlayerWinsPointAfterFirstPlayerAdvantage_deuce() throws Exception {
+		Score beforeLastPoint = new PlayerHasAdvantageScore("First");
+		Score result = beforeLastPoint.secondPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("Deuce");
 	}
 }
