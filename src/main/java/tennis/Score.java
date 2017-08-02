@@ -17,4 +17,9 @@ public class Score {
 		return this;
 	}
 
+	public Score secondPlayerWinsPoint() {
+		currentScore = "LOVE:FIFTEEN";
+		return this;
+	}
+
 }
