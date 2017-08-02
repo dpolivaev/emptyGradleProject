@@ -89,4 +89,11 @@ public class TennisSpec {
 		Score result = beforeLastPoint.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("Second player has advantage");
 	}
+
+	@Test
+	public void firstPlayerWinsPointAfterAdvantage_firstPlayerWinsGame() throws Exception {
+		Score beforeLastPoint = new PlayerHasAdvantageScore("First");
+		Score result = beforeLastPoint.firstPlayerWinsPoint();
+		assertThat(result.format()).isEqualTo("First player wins game");
+	}
 }
