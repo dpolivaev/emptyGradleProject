@@ -10,13 +10,13 @@ import tennis.InitialPhaseScore.Scores;
 public class TennisSpec {
 	@Test
 	public void initialScoreIsLoveLove() throws Exception {
-		Score initialScore = InitialPhaseScore.initialScore();
+		Score initialScore = Score.initialScore();
 		assertThat(initialScore.format()).isEqualTo("LOVE:LOVE");
 	}
 
 	@Test
 	public void firstPlayerWinsOnePoint_fifteenLove() throws Exception {
-		Score initialScore = InitialPhaseScore.initialScore();
+		Score initialScore = Score.initialScore();
 		Score result = initialScore.firstPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("FIFTEEN:LOVE");
 	}
@@ -24,14 +24,14 @@ public class TennisSpec {
 
 	@Test
 	public void secondPlayerWinsTwoPoints_loveFifteen() throws Exception {
-		Score initialScore = InitialPhaseScore.initialScore();
+		Score initialScore = Score.initialScore();
 		Score result = initialScore.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("LOVE:FIFTEEN");
 	}
 
 	@Test
 	public void eachPlayerWinsOnePoint_fifteenFifteen() throws Exception {
-		Score initialScore = InitialPhaseScore.initialScore();
+		Score initialScore = Score.initialScore();
 		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
 		Score result = fifteenToLove.secondPlayerWinsPoint();
 		assertThat(result.format()).isEqualTo("FIFTEEN:FIFTEEN");

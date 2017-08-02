@@ -9,11 +9,6 @@ class InitialPhaseScore implements Score {
 	private final Scores firstPlayerScore;
 	private final Scores secondPlayerScore;
 
-	public static InitialPhaseScore initialScore() {
-		return new InitialPhaseScore(Scores.LOVE, Scores.LOVE);
-	}
-	
-
 	@VisibleForTesting
 	InitialPhaseScore(Scores firstPlayerScore, Scores secondPlayerScore) {
 		super();
