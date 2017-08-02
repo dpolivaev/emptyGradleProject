@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
+import tennis.Score.Scores;
+
 public class TennisSpec {
 	@Test
 	public void initialScoreIsLoveLove() throws Exception {
@@ -15,24 +17,31 @@ public class TennisSpec {
 	@Test
 	public void firstPlayerWinsOnePoint_scoreIsFifteenLove() throws Exception {
 		Score initialScore = Score.initialScore();
-		Score fifteenToZero = initialScore.firstPlayerWinsPoint();
-		assertThat(fifteenToZero.format()).isEqualTo("FIFTEEN:LOVE");
+		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
+		assertThat(fifteenToLove.format()).isEqualTo("FIFTEEN:LOVE");
 	}
 
 
 	@Test
 	public void secondPlayerWinsTwoPoints_scoreIsLoveFifteen() throws Exception {
 		Score initialScore = Score.initialScore();
-		Score fifteenToZero = initialScore.secondPlayerWinsPoint();
-		assertThat(fifteenToZero.format()).isEqualTo("LOVE:FIFTEEN");
+		Score fifteenToLove = initialScore.secondPlayerWinsPoint();
+		assertThat(fifteenToLove.format()).isEqualTo("LOVE:FIFTEEN");
 	}
 
 	@Test
 	public void eachPlayerWinsOnePoint_scoreIsFifteenFifteen() throws Exception {
 		Score initialScore = Score.initialScore();
-		Score fifteenToZero = initialScore.firstPlayerWinsPoint();
-		Score fifteenToFifteen = fifteenToZero.secondPlayerWinsPoint();
+		Score fifteenToLove = initialScore.firstPlayerWinsPoint();
+		Score fifteenToFifteen = fifteenToLove.secondPlayerWinsPoint();
 		assertThat(fifteenToFifteen.format()).isEqualTo("FIFTEEN:FIFTEEN");
 	}
 
+
+	@Test
+	public void firstPlayerWinsTwoPoints_scoreIsThirtyLove() throws Exception {
+		Score fifteenToLove = new Score(Scores.FIFTEEN, Scores.LOVE);
+		Score thirtyToLove = fifteenToLove.firstPlayerWinsPoint();
+		assertThat(thirtyToLove.format()).isEqualTo("THIRTY:LOVE");
+	}
 }

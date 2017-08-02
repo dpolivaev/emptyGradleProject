@@ -1,9 +1,10 @@
 package tennis;
 
+import org.assertj.core.util.VisibleForTesting;
 
 public class Score {
 	
-	enum Scores{LOVE, FIFTEEN};
+	enum Scores{LOVE, FIFTEEN, THIRTY};
 	
 	private final Scores firstPlayerScore;
 	private final Scores secondPlayerScore;
@@ -13,7 +14,8 @@ public class Score {
 	}
 	
 
-	private Score(Scores firstPlayerScore, Scores secondPlayerScore) {
+	@VisibleForTesting
+	Score(Scores firstPlayerScore, Scores secondPlayerScore) {
 		super();
 		this.firstPlayerScore = firstPlayerScore;
 		this.secondPlayerScore = secondPlayerScore;
@@ -25,7 +27,8 @@ public class Score {
 	}
 
 	public Score firstPlayerWinsPoint() {
-		return new Score(Scores.FIFTEEN, secondPlayerScore);
+		Scores nextScore = Scores.values()[firstPlayerScore.ordinal() + 1];
+		return new Score(nextScore, secondPlayerScore);
 	}
 
 	public Score secondPlayerWinsPoint() {
