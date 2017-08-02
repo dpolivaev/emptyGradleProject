@@ -52,4 +52,12 @@ public class TennisSpec {
 		Score thirtyToLove = fifteenToLove.secondPlayerWinsPoint();
 		assertThat(thirtyToLove.format()).isEqualTo("LOVE:THIRTY");
 	}
+
+
+	@Test
+	public void firstPlayerWinsThreePoints_scoreIsFortyLove() throws Exception {
+		Score fifteenToLove = new Score(Scores.THIRTY, Scores.LOVE);
+		Score thirtyToLove = fifteenToLove.firstPlayerWinsPoint();
+		assertThat(thirtyToLove.format()).isEqualTo("FORTY:LOVE");
+	}
 }

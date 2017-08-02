@@ -4,7 +4,7 @@ import org.assertj.core.util.VisibleForTesting;
 
 public class Score {
 	
-	enum Scores{LOVE, FIFTEEN, THIRTY};
+	enum Scores{LOVE, FIFTEEN, THIRTY, FORTY};
 	
 	private final Scores firstPlayerScore;
 	private final Scores secondPlayerScore;
