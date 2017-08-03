@@ -15,15 +15,15 @@ class InitialPhaseScore implements Score {
 
 
 	public String format() {
-		return getFirstPlayerScore().name() + ':' + getSecondPlayerScore().name();
+		return getScore(Players.FIRST).name() + ':' + getScore(Players.SECOND).name();
 	}
 
 	public Score firstPlayerWinsPoint() {
-		if(getFirstPlayerScore().ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[getFirstPlayerScore().ordinal() + 1];
-			return new InitialPhaseScore(nextScore, getSecondPlayerScore());
+		if(getScore(Players.FIRST).ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[getScore(Players.FIRST).ordinal() + 1];
+			return new InitialPhaseScore(nextScore, getScore(Players.SECOND));
 		}
-		else if(getSecondPlayerScore().ordinal() + 1 < Scores.values().length) {
+		else if(getScore(Players.SECOND).ordinal() + 1 < Scores.values().length) {
 			return new PlayerWinsScore(Players.FIRST);
 		}
 		else
@@ -31,25 +31,19 @@ class InitialPhaseScore implements Score {
 	}
 
 	public Score secondPlayerWinsPoint() {
-		if(getSecondPlayerScore().ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[getSecondPlayerScore().ordinal() + 1];
-			return new InitialPhaseScore(getFirstPlayerScore(), nextScore);
+		if(getScore(Players.SECOND).ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[getScore(Players.SECOND).ordinal() + 1];
+			return new InitialPhaseScore(getScore(Players.FIRST), nextScore);
 		}
-		else if(getFirstPlayerScore().ordinal() + 1 < Scores.values().length) {
+		else if(getScore(Players.FIRST).ordinal() + 1 < Scores.values().length) {
 			return new PlayerWinsScore(Players.SECOND);
 		}
 		else
 			return new PlayerHasAdvantageScore(Players.SECOND);
 	}
 
-
-	private Scores getFirstPlayerScore() {
-		return scores[Players.FIRST.ordinal()];
-	}
-
-
-	private Scores getSecondPlayerScore() {
-		return scores[Players.SECOND.ordinal()];
+	private Scores getScore(Players player) {
+		return scores[player.ordinal()];
 	}
 
 }
