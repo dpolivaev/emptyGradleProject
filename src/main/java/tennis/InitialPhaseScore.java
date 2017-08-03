@@ -18,12 +18,7 @@ class InitialPhaseScore implements Score {
 		return getScore(Players.FIRST).name() + ':' + getScore(Players.SECOND).name();
 	}
 
-	public Score firstPlayerWinsPoint() {
-		return playerWinsPoint(Players.FIRST);
-	}
-
-
-	private Score playerWinsPoint(Players player) {
+	public Score playerWinsPoint(Players player) {
 		Players anotherPlayer = player.anotherPlayer();
 		if(getScore(player).ordinal() + 1 < Scores.values().length) {
 			Scores nextScore = Scores.values()[getScore(player).ordinal() + 1];
@@ -35,10 +30,6 @@ class InitialPhaseScore implements Score {
 		}
 		else
 			return new PlayerHasAdvantageScore(player);
-	}
-
-	public Score secondPlayerWinsPoint() {
-		return playerWinsPoint(Players.SECOND);
 	}
 
 	private Scores getScore(Players player) {

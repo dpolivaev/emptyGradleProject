@@ -9,12 +9,7 @@ class PlayerWinsScore implements Score {
 	}
 
 	@Override
-	public Score firstPlayerWinsPoint() {
-		return null;
-	}
-
-	@Override
-	public Score secondPlayerWinsPoint() {
+	public Score playerWinsPoint(Players winningPlayer) {
 		return null;
 	}
 
