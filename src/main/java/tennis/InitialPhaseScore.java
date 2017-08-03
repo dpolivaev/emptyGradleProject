@@ -19,27 +19,26 @@ class InitialPhaseScore implements Score {
 	}
 
 	public Score firstPlayerWinsPoint() {
-		if(getScore(Players.FIRST).ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[getScore(Players.FIRST).ordinal() + 1];
-			return new InitialPhaseScore(nextScore, getScore(Players.SECOND));
+		return playerWinsPoint(Players.FIRST);
+	}
+
+
+	private Score playerWinsPoint(Players player) {
+		Players anotherPlayer = player.anotherPlayer();
+		if(getScore(player).ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[getScore(player).ordinal() + 1];
+			scores[player.ordinal()] = nextScore;
+			return this;
 		}
-		else if(getScore(Players.SECOND).ordinal() + 1 < Scores.values().length) {
-			return new PlayerWinsScore(Players.FIRST);
+		else if(getScore(anotherPlayer).ordinal() + 1 < Scores.values().length) {
+			return new PlayerWinsScore(player);
 		}
 		else
-			return new PlayerHasAdvantageScore(Players.FIRST);
+			return new PlayerHasAdvantageScore(player);
 	}
 
 	public Score secondPlayerWinsPoint() {
-		if(getScore(Players.SECOND).ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[getScore(Players.SECOND).ordinal() + 1];
-			return new InitialPhaseScore(getScore(Players.FIRST), nextScore);
-		}
-		else if(getScore(Players.FIRST).ordinal() + 1 < Scores.values().length) {
-			return new PlayerWinsScore(Players.SECOND);
-		}
-		else
-			return new PlayerHasAdvantageScore(Players.SECOND);
+		return playerWinsPoint(Players.SECOND);
 	}
 
 	private Scores getScore(Players player) {
