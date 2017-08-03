@@ -1,18 +1,6 @@
 package tennis;
 
 public interface Score {
-
-	
-	default public Score firstPlayerWinsPoint() {
-		return playerWinsPoint(Players.FIRST);
-	}
-
-	default
-	public Score secondPlayerWinsPoint() {
-		return playerWinsPoint(Players.SECOND);
-	}
-
-	
 	Score playerWinsPoint(Players player);
 
 	String format();
