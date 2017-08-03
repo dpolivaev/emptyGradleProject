@@ -13,4 +13,8 @@ enum Players {
 	public String getPlayerName() {
 		return playerName;
 	}
+
+	public Players anotherPlayer() {
+		return Players.SECOND;
+	}
 }
