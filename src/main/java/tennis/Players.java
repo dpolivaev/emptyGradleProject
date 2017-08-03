@@ -15,6 +15,6 @@ enum Players {
 	}
 
 	public Players anotherPlayer() {
-		return Players.SECOND;
+		return Players.values()[1 - ordinal()];
 	}
 }

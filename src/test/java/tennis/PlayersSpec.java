@@ -9,4 +9,9 @@ public class PlayersSpec {
 	public void firstsAnotherPlayerIsSecond() throws Exception {
 		assertThat(Players.FIRST.anotherPlayer()).isEqualTo(Players.SECOND);
 	}
+
+	@Test
+	public void secondsAnotherPlayerIsFirst() throws Exception {
+		assertThat(Players.SECOND.anotherPlayer()).isEqualTo(Players.FIRST);
+	}
 }
