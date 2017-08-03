@@ -5,28 +5,25 @@ import org.assertj.core.util.VisibleForTesting;
 class InitialPhaseScore implements Score {
 	
 	enum Scores{LOVE, FIFTEEN, THIRTY, FORTY};
-	
-	private final Scores firstPlayerScore;
-	private final Scores secondPlayerScore;
+	private final Scores[] scores;
 
 	@VisibleForTesting
 	InitialPhaseScore(Scores firstPlayerScore, Scores secondPlayerScore) {
 		super();
-		this.firstPlayerScore = firstPlayerScore;
-		this.secondPlayerScore = secondPlayerScore;
+		this.scores = new Scores[] {firstPlayerScore, secondPlayerScore};
 	}
 
 
 	public String format() {
-		return firstPlayerScore.name() + ':' + secondPlayerScore.name();
+		return getFirstPlayerScore().name() + ':' + getSecondPlayerScore().name();
 	}
 
 	public Score firstPlayerWinsPoint() {
-		if(firstPlayerScore.ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[firstPlayerScore.ordinal() + 1];
-			return new InitialPhaseScore(nextScore, secondPlayerScore);
+		if(getFirstPlayerScore().ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[getFirstPlayerScore().ordinal() + 1];
+			return new InitialPhaseScore(nextScore, getSecondPlayerScore());
 		}
-		else if(secondPlayerScore.ordinal() + 1 < Scores.values().length) {
+		else if(getSecondPlayerScore().ordinal() + 1 < Scores.values().length) {
 			return new PlayerWinsScore(Players.FIRST);
 		}
 		else
@@ -34,15 +31,25 @@ class InitialPhaseScore implements Score {
 	}
 
 	public Score secondPlayerWinsPoint() {
-		if(secondPlayerScore.ordinal() + 1 < Scores.values().length) {
-			Scores nextScore = Scores.values()[secondPlayerScore.ordinal() + 1];
-			return new InitialPhaseScore(firstPlayerScore, nextScore);
+		if(getSecondPlayerScore().ordinal() + 1 < Scores.values().length) {
+			Scores nextScore = Scores.values()[getSecondPlayerScore().ordinal() + 1];
+			return new InitialPhaseScore(getFirstPlayerScore(), nextScore);
 		}
-		else if(firstPlayerScore.ordinal() + 1 < Scores.values().length) {
+		else if(getFirstPlayerScore().ordinal() + 1 < Scores.values().length) {
 			return new PlayerWinsScore(Players.SECOND);
 		}
 		else
 			return new PlayerHasAdvantageScore(Players.SECOND);
+	}
+
+
+	private Scores getFirstPlayerScore() {
+		return scores[Players.FIRST.ordinal()];
+	}
+
+
+	private Scores getSecondPlayerScore() {
+		return scores[Players.SECOND.ordinal()];
 	}
 
 }
